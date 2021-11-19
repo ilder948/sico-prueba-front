@@ -1,0 +1,101 @@
+<div class="container mt-3">
+  <div class="row">
+    <div *ngIf="error">
+      <app-alert color="{{colorError}}" text="{{messageError}}"></app-alert>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Nuevo / Editar
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="addEstudiante($event)">
+            <input type="hidden" class="form-control" formControlName="Id">
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Nombre 1</label>
+                  <input type="text" class="form-control" formControlName="Nombre1">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Nombre 2</label>
+                  <input type="text" class="form-control" formControlName="Nombre2">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Apellido 1</label>
+                  <input type="text" class="form-control" formControlName="Apellido1">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Apellido 2</label>
+                  <input type="text" class="form-control" formControlName="Apellido2">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Tipo Identificacion</label>
+                  <input type="text" class="form-control" formControlName="TipoIdentificacion">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Identificacion</label>
+                  <input type="text" class="form-control" formControlName="Identificacion">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="text" class="form-control" formControlName="Email">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Celular</label>
+                  <input type="text" class="form-control" formControlName="Celular">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Dirección</label>
+                  <input type="text" class="form-control" formControlName="Direccion">
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group mb-3">
+                  <label class="form-label">Ciudad</label>
+                  <input type="text" class="form-control" formControlName="Ciudad">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <app-buttons title="Atras" colorButton="btn-secondary" buttonType="button" (click)="goBack()"></app-buttons>
+              </div>
+              <div class="col">
+                <app-buttons title="Enviar" colorButton="btn-primary" buttonType="submit" ></app-buttons>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #Loading>
+  <app-loading></app-loading>
+</ng-template>

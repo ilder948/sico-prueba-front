@@ -1,0 +1,84 @@
+<div class="container" *ngIf="estudiante; else Loading">
+  <app-nav-component title="{{estudiante?.Nombre1}} {{estudiante?.Apellido1}} - {{estudiante?.Identificacion}}">
+  </app-nav-component>
+  <ul class="nav justify-content-end">
+    <li class="nav-item">
+      <a class="btn btn-primary" aria-current="page" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="getCursos()">
+        <i class="fas fa-plus"></i>
+        Asignar Nuevo Curso</a>
+    </li>
+  </ul>
+  <div class="card text-center">
+    <div class="card-header">
+      <h1>Cursos</h1>
+    </div>
+    <div class="card-body">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Curso</th>
+            <th>Creditos</th>
+            <th>Nota Final</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let curso of CursosEstudiante">
+            <td>{{curso.Id}}</td>
+            <td>{{curso.Curso.Nombre}}</td>
+            <td>{{curso.Curso.NumeroCreditos}}</td>
+            <td>{{curso.NotaFinal}}</td>
+            <td>
+              <button class="btn btn-success btn-sm mx-1" type="button" data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop" (click)="detalleEstudianteCurso(curso.Id)"><i
+                  class="fas fa-edit"></i></button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<ng-template #Loading>
+  <app-loading></app-loading>
+</ng-template>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form [formGroup]="form" (ngSubmit)="addNota($event)">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="reset()"></button>
+        </div>
+
+        <div class="modal-body">
+          <div *ngIf="error">
+            <app-alert color="{{colorError}}" text="{{messageError}}"></app-alert>
+          </div>
+          <input type="hidden" name="" id="" formControlName="IdEstudiante" [value]="Id">
+          <input type="hidden" name="" id="" formControlName="Id">
+          <div class="mb-3">
+            <label for="">Curso</label>
+            <select class="form-select" formControlName="IdCurso">
+              <option *ngFor="let cursox of Cursos" value="{{cursox.Id}}">{{cursox.Nombre}}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="">Nota Final</label>
+            <input type="text" class="form-control" formControlName="NotaFinal">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="reset()">Cerrar</button>
+          <button type="submit" class="btn btn-primary" >Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

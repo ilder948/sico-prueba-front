@@ -1,0 +1,40 @@
+<app-nav-component title="Estudiantes"></app-nav-component>
+
+<div *ngIf="error">
+  <app-alert color="{{colorError}}" text="{{messageError}}"></app-alert>
+</div>
+
+<button class="btn btn-success" [routerLink]="['/estudiantes/form']" routerLinkActive="router-link-active" > Nuevo</button>
+<table class="table" *ngIf="estudiantes.length; else Loading">
+  <thead>
+    <tr>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellidos</th>
+      <th scope="col">Identificacion</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Email</th>
+      <th class="text-end">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let estudiante of estudiantes">
+      <th scope="row">{{estudiante.Nombre1}} {{estudiante.Nombre2}}</th>
+      <td>{{estudiante.Apellido1}} {{estudiante.Apellido2}}</td>
+      <td>{{estudiante.TipoIdentificacion}} {{estudiante.Identificacion}}</td>
+      <td>{{estudiante.Ciudad}}</td>
+      <td>{{estudiante.Celular}}</td>
+      <td>{{estudiante.Email}}</td>
+      <td class="text-end">
+        <a class="btn btn-primary mx-1" [routerLink]="['detail', estudiante.Id]" routerLinkActive="router-link-active" ><i class="fas fa-eye"></i></a>
+        <a class="btn btn-success mx-1" [routerLink]="['form', estudiante.Id]" routerLinkActive="router-link-active" ><i class="fas fa-edit"></i></a>
+        <a class="btn btn-danger mx-1" (click)="eliminarEstudiante(estudiante.Id)"><i class="fas fa-trash"></i></a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<ng-template #Loading>
+  <app-loading></app-loading>
+</ng-template>
