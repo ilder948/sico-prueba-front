@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  //urlBackend: "http://locaLhost:3003"
-  urlBackend: "https://secure-shore-80871.herokuapp.com"
-
+  urlBackend: "http://locaLhost:3003"
 };
 
 /*
